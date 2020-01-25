@@ -6,10 +6,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  void _homePage() {
-    Navigator.pushNamed(context, '/home');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
