@@ -6,6 +6,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var _emailCtrl = new TextEditingController();
+  var _passwordCtrl = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   TextFormField(
+                    controller: _emailCtrl,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: "E-mail",
@@ -32,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(fontSize: 20),
                   ),
                   TextFormField(
+                    controller: _passwordCtrl,
                     keyboardType: TextInputType.text,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -68,9 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                       "Login",
                       textAlign: TextAlign.center,
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/home');
-                    }
+                    onPressed: submit
                   ),
                 ),
               ),
@@ -78,6 +81,23 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void submit() async {
+    if (_emailCtrl.text == 'login@email.com' && _passwordCtrl.text == '4321') {
+      Navigator.pushNamed(context, '/home');
+    } else {
+      dialog();
+    }
+  }
+
+  dialog() {
+    showDialog(context: context, child:
+      new AlertDialog(
+        title: new Text("Atenção!"),
+        content: new Text("Email e/ou senha incorreto"),
+      )
     );
   }
 }
