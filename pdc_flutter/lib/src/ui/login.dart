@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:pdc_flutter/src/models/usuario_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -85,7 +90,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void submit() async {
-    if (_emailCtrl.text == 'login@email.com' && _passwordCtrl.text == '4321') {
+    final response = await http.post(
+      'http://localhost:3000/login',
+      body: { 'email': _emailCtrl.text, 'password': _passwordCtrl.text }
+    );
+    
+    final usuario = UsuarioModel.fromJson(json.decode(response.body));
+    
+    if (response.statusCode == 200) {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('pdc', usuario.toString());
+
       Navigator.pushNamed(context, '/home');
     } else {
       dialog();
@@ -96,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(context: context, child:
       new AlertDialog(
         title: new Text("Atenção!"),
-        content: new Text("Email e/ou senha incorreto"),
+        content: new Text("Email e/ou senha incorretos"),
       )
     );
   }
