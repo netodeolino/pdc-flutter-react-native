@@ -8,16 +8,23 @@ import {
   KeyboardAvoidingView
 } from 'react-native';
 
+import axios from 'axios';
+
 export default class Login extends React.Component {
 
   state = {
-    email: '',
-    password: '',
+    email: 'login@email.com',
+    password: '4321',
     err: false
   };
 
   login = async () => {
-    if (this.state.email == 'login@email.com' && this.state.password == '4321') {
+    const data = await axios.post('http://localhost:3000/login', {
+      email: this.state.email,
+      password: this.state.password
+    });
+
+    if (data.status === 200) {
       this.props.navigation.navigate('Home');
     } else {
       this.setState({ err: true });
@@ -32,12 +39,10 @@ export default class Login extends React.Component {
             <Text style={styles.title}>
               Login
             </Text>
-
-            <Text>
-              {this.state.email} {this.state.password} {this.state.err}
-            </Text>
   
             <TextInput
+              autoCapitalize="none"
+              keyboardType="email-address"
               placeholder="Email"
               placeholderColor="#c4c3cb"
               style={styles.loginFormTextInput}
