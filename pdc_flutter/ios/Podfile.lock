@@ -1,20 +1,26 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_share_me (0.0.1):
+    - Flutter
   - shared_preferences (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_share_me (from `.symlinks/plugins/flutter_share_me/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_share_me:
+    :path: ".symlinks/plugins/flutter_share_me/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_share_me: dd04bcb65a595f76bd2fa0537df08fffc5a04903
   shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
 
 PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
