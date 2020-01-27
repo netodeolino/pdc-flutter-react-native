@@ -90,21 +90,23 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void submit() async {
-    final response = await http.post(
-      'http://localhost:3000/login',
-      body: { 'email': _emailCtrl.text, 'password': _passwordCtrl.text }
-    );
-    
-    final usuario = UsuarioModel.fromJson(json.decode(response.body));
-    
-    if (response.statusCode == 200) {
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setString('pdc', usuario.toString());
+    Navigator.pushNamed(context, '/home');
 
-      Navigator.pushNamed(context, '/home');
-    } else {
-      dialog();
-    }
+    // final response = await http.post(
+    //   'http://localhost:3000/login',
+    //   body: { 'email': _emailCtrl.text, 'password': _passwordCtrl.text }
+    // );
+    
+    // final usuario = UsuarioModel.fromJson(json.decode(response.body));
+    
+    // if (response.statusCode == 200) {
+    //   final prefs = await SharedPreferences.getInstance();
+    //   prefs.setString('pdc', usuario.toString());
+
+    //   Navigator.pushNamed(context, '/home');
+    // } else {
+    //   dialog();
+    // }
   }
 
   dialog() {
