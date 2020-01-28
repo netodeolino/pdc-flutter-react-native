@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_gauge/flutter_gauge.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -26,7 +24,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         leading: Icon(Icons.menu),
         title: Text('Prova de Conceito'),
         actions: <Widget>[
-          Icon(Icons.notifications)
+          IconButton(
+            icon: Icon(Icons.attach_money),
+            onPressed: (){
+              Navigator.pushNamed(context, '/ipva');
+            }
+          ),
         ],
       ),
       body: Container(
@@ -118,12 +121,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),        
-      ),
+      )
     );
   }
 }
